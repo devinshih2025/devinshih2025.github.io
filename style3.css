@@ -1,0 +1,332 @@
+/* style.css */
+
+/* :root 定義了整個網站的顏色主題 */
+:root {
+    --primary-color: #89CFF0; /* 寶寶藍 */
+    --secondary-color: #ADD8E6; /* 淺藍 */
+    --accent-color: #6495ED;   /* 矢車菊藍 */
+    --text-color: #2c3e50;
+    --bg-gradient: linear-gradient(135deg, #ADD8E6 0%, #B0E0E6 50%, #AFEEEE 100%); /* 淺藍漸層 */
+    --light-blue: #F0F8FF;      /* 愛麗絲藍 (非常淺的藍) */
+    --deep-blue: #4682B4;       /* 鋼藍 */
+    --blue-shadow: rgba(137, 207, 240, 0.3); /* 寶寶藍陰影 */
+}
+
+/* --- 雪花特效 CSS --- */
+.snowflake {
+    position: fixed; /* 固定在視窗上，不隨頁面滾動 */
+    top: -10px;      /* 從畫面頂部外開始 */
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none; /* 讓滑鼠可以點擊雪花後面的內容 */
+    z-index: 9999;   /* 確保雪花在最上層 */
+    opacity: 0.8;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+    /* 動畫設定: 動畫名稱、線性播放、無限循環 */
+    animation: fall linear infinite;
+}
+
+/* 雪花飄落的動畫 */
+@keyframes fall {
+    to {
+        /* 往下移動整個視窗的高度，並稍微左右移動 */
+        transform: translateY(105vh) translateX(20vw);
+        opacity: 0;
+    }
+}
+
+/* --- 頁面基本樣式 --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    padding-top: 70px;
+    background: var(--light-blue);
+    overflow-x: hidden; /* 防止水平滾動條出現 */
+}
+
+/* Navigation */
+.navbar {
+    background: rgba(137, 207, 240, 0.98) !important; /* Baby Blue */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px var(--blue-shadow);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--light-blue) !important;
+    transform: translateY(-2px);
+}
+
+/* Header Section */
+.project-header {
+    background: var(--bg-gradient);
+    color: white;
+    padding: 4rem 0 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.project-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Content Sections */
+.content-section {
+    margin-bottom: 3rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--blue-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 10;
+}
+
+.content-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(137, 207, 240, 0.2);
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+/* Image Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(137, 207, 240, 0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(137, 207, 240, 0.25);
+    border-color: var(--secondary-color);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--bg-gradient);
+    border: none;
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--blue-shadow);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(137, 207, 240, 0.4);
+    color: white;
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px var(--blue-shadow);
+    color: white;
+}
+2. index.html (修改後)
+這是修改後的 index.html 檔案。主要變動在 <head> 區塊，原本的 <style>...</style> 內容被移除，替換成一行 <link rel="stylesheet" href="style.css">。
+
+HTML
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寶寶藍 & 雪花特效展示</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">寶寶藍主題</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">首頁</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">關於</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">服務</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">聯絡我們</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="project-header text-center">
+        <div class="container">
+            <h1 class="project-title">冬日雪花紛飛</h1>
+            <p class="project-subtitle">一個使用 CSS 和 JavaScript 製作的動態效果</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="content-section">
+            <h2 class="section-title">主題介紹</h2>
+            <p>這個頁面展示了如何將原有的粉色系 CSS 主題修改為清新的寶寶藍色系。我們調整了顏色變數，包括主要、次要和強調色，以創建一個統一且和諧的視覺體驗。</p>
+            <p>最特別的是，我們加入了一個純 CSS 和 JavaScript 驅動的雪花特效，讓整個頁面充滿了冬日的浪漫氛圍。這個效果是輕量級的，並且不會影響用戶與頁面內容的互動。</p>
+            <a href="#" class="btn btn-primary mt-3">了解更多</a>
+            <a href="#" class="btn btn-outline-primary mt-3">查看原始碼</a>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">圖片畫廊</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://plus.unsplash.com/premium_photo-1675355679544-629a8a7ca2c9?q=80&w=800" alt="Winter Landscape 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1487424439918-bc6b5bef0380?q=80&w=800" alt="Winter Landscape 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1549472539-b2c354728383?q=80&w=800" alt="Winter Landscape 3">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-4">
+        <p>&copy; 2025 - 寶寶藍雪花主題展示</p>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const snowflakeCount = 150; // 雪花的數量
+            const body = document.body;
+
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+
+                // 設定雪花隨機的起始位置和大小
+                const startX = Math.random() * window.innerWidth;
+                const size = Math.random() * 5 + 2; // 大小介於 2px 到 7px
+                
+                snowflake.style.left = startX + 'px';
+                snowflake.style.width = size + 'px';
+                snowflake.style.height = size + 'px';
+
+                // 設定隨機的動畫時間和延遲，讓雪花飄落速度不同
+                const duration = Math.random() * 8 + 5; // 時間介於 5s 到 13s
+                const delay = Math.random() * 5;
+                
+                snowflake.style.animationDuration = duration + 's';
+                snowflake.style.animationDelay = delay + 's';
+
+                // 為了讓動畫更自然，讓一些雪花左右偏移
+                const initialX = Math.random() * 20 - 10; // -10vw 到 10vw 的初始偏移
+                snowflake.style.transform = `translateX(${initialX}vw)`;
+                
+                body.appendChild(snowflake);
+
+                // 動畫結束後移除雪花，避免頁面元素過多
+                setTimeout(() => {
+                    snowflake.remove();
+                }, (duration + delay) * 1000);
+            }
+
+            // 每隔一段時間產生新的雪花，製造源源不絕的感覺
+            setInterval(createSnowflake, 300);
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
