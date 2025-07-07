@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const videoId = firstLine.includes("youtu.be")
                     ? firstLine.split("youtu.be/")[1]
                     : firstLine.split("v=")[1].split("&")[0];
-                const iframeHTML = `
+               const iframeHTML = `
                     <div class="container mt-5 mb-5">
                         <div class="ratio ratio-16x9">
                             <iframe src="https://www.youtube.com/embed/${videoId}" 
@@ -299,7 +299,38 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("No YouTube video for this unit.");
         });
 });
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // We add a condition here to check if the current unit is NOT 1
+    if (currentUnit !== 1) {
+        fetch(`YoutubeLink/unit${currentUnit}.txt`)
+            .then(response => {
+                if (!response.ok) throw new Error("No YouTube link found.");
+                return response.text();
+            })
+            .then(text => {
+                const firstLine = text.trim().split('\n')[0];
+                if (firstLine.includes("youtube") || firstLine.includes("youtu.be")) {
+                    const videoId = firstLine.includes("youtu.be")
+                        ? firstLine.split("youtu.be/")[1]
+                        : firstLine.split("v=")[1].split("&")[0];
+                    const iframeHTML = `
+                        <div class="container mt-5 mb-5">
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://www.youtube.com/embed/${videoId}" 
+                                        title="YouTube video" allowfullscreen></iframe>
+                            </div>
+                        </div>`;
+                    document.body.insertAdjacentHTML("beforeend", iframeHTML);
+                }
+            })
+            .catch(err => {
+                console.log("No YouTube video for this unit.");
+            });
+    } else {
+        console.log("YouTube video is disabled for Unit #1.");
+    }
+});
 </script>
-
 </body>
 </html>
